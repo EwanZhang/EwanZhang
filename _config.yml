@@ -5,11 +5,11 @@ email: zhang21507@gmail.com
 description: " Ewan Zhang 的个人博客 "
 baseurl: ""
 url: "http://www.ewanzhang.com/"
-twitter_username: Ewan
-github_username:  Ewan
-facebook_username:  Ewan
-weibo_username: Ewan
-zhihu_username: Ewan
+twitter_username:  
+github_username:  EwanZhang
+facebook_username:  
+weibo_username:  
+zhihu_username:  
 
 # Build settings
 markdown: kramdown 
