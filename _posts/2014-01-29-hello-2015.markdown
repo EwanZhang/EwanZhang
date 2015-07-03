@@ -2,7 +2,6 @@
 layout:     post
 title:      "Hello 2015"
 date:       2015-01-29
-author:     "Hux"
 tags:
     - 生活
 ---
