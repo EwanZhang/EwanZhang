@@ -169,8 +169,8 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 创建认证用的用户文件
 
-`ocpasswd -c /usr/local/etc/ocserv/ocpasswd <username>`  
-<username>为设置的用户
+`ocpasswd -c /usr/local/etc/ocserv/ocpasswd username`  
+username为设置的用户  
 
 修改系统配置，允许转发
 
