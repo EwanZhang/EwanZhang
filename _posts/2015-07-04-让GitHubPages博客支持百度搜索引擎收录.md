@@ -35,7 +35,7 @@ Jekyll 2.4 版本之后，会关注文件的变动，自动重新生成静态文
 **定时更新博客代码**  
 
 `vi mydomain.sh`  
-#新建一个脚本
+新建一个脚本
 
 `#!/bin/bash`  
 `cd ~/; rm -rf /root/mydomain.com`  
