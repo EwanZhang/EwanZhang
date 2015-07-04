@@ -1,10 +1,10 @@
 ---
 layout:     post
-title:      centos6配置anyconnect
+title:      CentOS6配置AnyConnec
 date:       2015-07-04
 tags:
-    - centos
-    - anyconnect
+    - CentOS
+    - AnyConnec
 ---
 
 环境：CentOS 6
