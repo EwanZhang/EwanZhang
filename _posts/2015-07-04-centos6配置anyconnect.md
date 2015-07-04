@@ -82,10 +82,8 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `cd ocserv-0.10.5`
 
-增大 route 数量限制
-
-`vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h`
-
+增大 route 数量限制  
+`vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h`  
 修改:  
 `#define MAX_CONFIG_ENTRIES 200`
 
