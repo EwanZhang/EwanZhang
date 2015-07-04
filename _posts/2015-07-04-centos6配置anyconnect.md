@@ -173,7 +173,7 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 修改系统配置，允许转发
 
-注意把网卡接口名称改成你服务器上对应的接口
+注意把网卡接口名称改成你服务器上对应的接口  
 
 `vi /etc/sysctl.conf`  
 修改:`/net.ipv4.ip_forward = 1`  
