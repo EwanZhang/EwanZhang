@@ -141,25 +141,25 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 修改如下：
 
 `auth = "plain[/usr/local/etc/ocserv/ocpasswd]"`  
-`#ocserv支持多种认证方式，这是自带的密码认证，使用ocpasswd创建密码文件`  
-`#ocserv还支持证书认证，可以通过Pluggable Authentication Modules (PAM)使用radius等认证方式`  
+ocserv支持多种认证方式，这是自带的密码认证，使用ocpasswd创建密码文件  
+ocserv还支持证书认证，可以通过Pluggable Authentication Modules (PAM)使用radius等认证方式  
 
 `run-as-group = nobody`
 
 `isolate-workers = false `
 
 `max-same-clients = 10`  
-`#同一个用户最多同时登陆数`  
+同一个用户最多同时登陆数  
 
 `server-cert = /usr/local/etc/ocserv/server-cert.pem`  
 `server-key = /usr/local/etc/ocserv/server-key.pem`  
-`#证书路径`  
+证书路径  
 
 `#default-domain = example.com`  
-`#注释掉这行`  
+注释掉这行  
 
 `ipv4-network = 192.168.10.0`  
-`#分配给VPN客户端的IP段`  
+分配给VPN客户端的IP段  
 
 `dns = 8.8.8.8`
 
@@ -167,8 +167,8 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `#route = 192.168.1.0/255.255.255.0`  
 `#route = 192.168.5.0/255.255.255.0`  
-`#注释掉这两行。route参数留空表示所有流量均走VPN。`  
-`#ocserv可以给客户端下发路由表。比如可以把公司内网IP段、所有国外IP走VPN出去。`  
+注释掉这两行。route参数留空表示所有流量均走VPN。  
+ocserv可以给客户端下发路由表。比如可以把公司内网IP段、所有国外IP走VPN出去。  
 
 创建认证用的用户文件
 
