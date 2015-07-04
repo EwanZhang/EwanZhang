@@ -10,6 +10,8 @@ tags:
 # CentOS6安装Jekyll
 
 
+环境：centos6
+
 **编译安装Node.js**  
 Jekyll是基于Ruby开发的，用到了Ruby的execjs方法来执行JavaScript代码，而这需要自己指定一个JavaScript runtime；这里我们选择安装Node.js。  
 `sudo yum install libtool automake autoconf gcc-c++ openssl-devel wget`
