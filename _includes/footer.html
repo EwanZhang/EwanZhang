@@ -89,6 +89,27 @@
     }
 </script>
 
+<!-- jQuery -->		
+<script src="{{ "http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js " | prepend: site.baseurl }}"></script>		
+		
+<!-- Bootstrap Core JavaScript -->		
+<script src="{{ "http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js " | prepend: site.baseurl }}"></script>		
+		
+<!-- Custom Theme JavaScript -->		
+<script src="{{ "http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js " | prepend: site.baseurl }}"></script>		
+		
+<!-- TODO: only load in tag.html -->		
+<script src="/js/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script> 		
+<script language="javascript">		
+    $.fn.tagcloud.defaults = {		
+        //size: {start: 1, end: 1, unit: 'em'},		
+        color: {start: '#bbbbee', end: '#0085a1'},		
+    };		
+    $(function () {		
+        $('#tag_cloud a').tagcloud();		
+    });		
+</script>		
+
 <!-- Highlight.js -->
 <script>
     async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js",function(){
