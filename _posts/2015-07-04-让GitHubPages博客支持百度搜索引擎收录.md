@@ -18,9 +18,13 @@ DNSPOD支持这个功能，免费用户可以 按电信、联通、教育网、�
 首先[安装Jekyll](http://ewanzhang.github.com/2015/07/04/centos6安装Jekyll/)  
 
 **克隆博客代码**  
-`sudo yum install git`
+`sudo yum install git`  
 
-`git clone https://github.com/username/username.github.io.git ./mydomain.com`
+`sudo mkdir -p ~/mydomain.com/`  
+
+`cd ~/mydomain.com/`  
+
+`git clone https://github.com/username/username.github.io.git ./`
 
 Jekyll默认的markdown解析器maruku对中文支持不够完善，所以换成RDiscount解析器
 `gem install rdiscount`
@@ -30,23 +34,13 @@ Jekyll 2.4 版本之后，会关注文件的变动，自动重新生成静态文
 `cd ~/mydomain.com/`  
 `jekyll serve --port 80 --host 192.168.1.101 --detach`  
 
-绑host 测试，能正常访问则搭建完成。
-
 **定时更新博客代码**  
+配置crontab 2分钟pull一下代码：  
 
-`vi mydomain.sh`  
-新建一个脚本
-
-`#!/bin/bash`  
-`cd ~/; rm -rf /root/mydomain.com`  
-`cd ~/; git clone https://github.com/username/username.github.io.git ./mydomain.com`  
-`cd ~/mydomain.com/; jekyll serve`  
-
-配置crontab 5分钟运行一下脚本：  
 `crontab -e `
 
-添加下面的代码：  
-`*/5 * * * * /root/mydomain.sh`  
+# 添加下面的代码：
+`*/2 * * * * cd ~/mydomain.com/; git pull >> /tmp/github_blog_pull_record.log 2>&1;`
 
 **配置智能dns**
 
