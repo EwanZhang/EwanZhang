@@ -46,7 +46,7 @@ Jekyll 2.4 版本之后，会关注文件的变动，自动重新生成静态文
 
 登录DNSPOD，进入域名解析的设置页面，添加一条针对百度的解析：
 
-![](http://7xk35i.com1.z0.glb.clouddn.com/dnspod-dns.jpg)
+![](http://7xk35i.com1.z0.glb.clouddn.com/dnspod-dns.jpg)  
 
 
-参考原文链接：http://tabalt.net/blog/make-blog-support-baidu-search-engine/
+**参考原文链接：http://tabalt.net/blog/make-blog-support-baidu-search-engine/**
