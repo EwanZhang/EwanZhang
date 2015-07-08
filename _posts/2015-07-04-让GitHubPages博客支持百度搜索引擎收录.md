@@ -29,7 +29,7 @@ DNSPOD支持这个功能，免费用户可以 按电信、联通、教育网、�
 Jekyll默认的markdown解析器maruku对中文支持不够完善，所以换成RDiscount解析器
 `gem install rdiscount`
 
-**启动博客站点**
+**启动博客站点**  
 Jekyll 2.4 版本之后，会关注文件的变动，自动重新生成静态文件。使用--detach参数指定在后台执行，--port指定端口，--host指定当前机器的外网ip。  
 `cd ~/mydomain.com/`  
 `jekyll serve --port 80 --host 192.168.1.101 --detach`  
