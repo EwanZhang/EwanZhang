@@ -39,7 +39,7 @@ Jekyll 2.4 版本之后，会关注文件的变动，自动重新生成静态文
 
 `crontab -e `
 
-# 添加下面的代码：
+添加下面的代码：
 `*/2 * * * * cd ~/mydomain.com/; git pull >> /tmp/github_blog_pull_record.log 2>&1;`
 
 **配置智能dns**
