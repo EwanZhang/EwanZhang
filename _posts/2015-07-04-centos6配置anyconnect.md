@@ -36,8 +36,7 @@ yum install -y openssl openssl-devel
 
 **2.编译nettle**
 
-安装gmp
-
+安装gmp  
 ```html
 yum install -y gmp-devel gmp
 ```
@@ -61,8 +60,7 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 
 **2、编译unbound**
 
-安装expat-devel
-
+安装expat-devel  
 ```html
 yum install -y expat-devel
 ```
@@ -111,8 +109,7 @@ make install
 
 ```
 
-安装libgcrypt:
-
+安装libgcrypt:  
 ```html
 
 cd
@@ -133,8 +130,7 @@ install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
 
 ```
 
-安装libtasn1
-
+安装libtasn1  
 ```html
 
 cd
@@ -153,8 +149,7 @@ make install
 
 ```
 
-安装gnutls
-
+安装gnutls  
 ```html
 
 cd
@@ -188,14 +183,17 @@ cd ocserv-0.10.5
 ```
 
 增大 route 数量限制  
-
 ```html
 vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h
-```
+```  
 修改:  
+```html
 #define MAX_CONFIG_ENTRIES 200
+```
 
+```html
 ./configure && make && make install
+```
 
 **5、配置ocserv**
 
