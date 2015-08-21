@@ -45,9 +45,9 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 `make`
 
 `make install &&`
-`chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&`
-`install -v -m755 -d /usr/share/doc/nettle-3.1.1  &&`
-`install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1`
+`chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&`  
+`install -v -m755 -d /usr/share/doc/nettle-3.1.1  &&`  
+`install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1`  
 
 **2、编译unbound**
 
@@ -61,16 +61,16 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4`
 
-`groupadd -g 88 unbound &&`
-`useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \`
-`        -g unbound -s /bin/false unbound`
-`./configure --prefix=/usr     \`
-`            --sysconfdir=/etc \`
-`            --disable-static  \`
-`            --with-pidfile=/run/unbound.pid &&`
+`groupadd -g 88 unbound &&`  
+`useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \`  
+`        -g unbound -s /bin/false unbound`  
+`./configure --prefix=/usr     \`  
+`            --sysconfdir=/etc \`  
+`            --disable-static  \`  
+`            --with-pidfile=/run/unbound.pid &&`  
 `make`
 
-`make install &&`
+`make install &&`  
 `mv -v /usr/sbin/unbound-host /usr/bin/`
 
 **3、编译gnutls**
@@ -104,10 +104,10 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `make`
 
-`make install &&`
-`install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&`
-`install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \`
-`                    /usr/share/doc/libgcrypt-1.6.3`
+`make install &&`  
+`install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&`  
+`install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \`  
+`                    /usr/share/doc/libgcrypt-1.6.3`  
 
 
 安装libtasn1
@@ -139,8 +139,8 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `cd gnutls-3.4.4.1`
 
-`./configure --prefix=/usr \`
-`            --without-p11-kit &&`
+`./configure --prefix=/usr \`  
+`            --without-p11-kit &&`  
 `make`
 
 `make install`
@@ -219,7 +219,9 @@ ocserv还支持证书认证，可以通过Pluggable Authentication Modules (PAM)
 同一个用户最多同时登陆数  
 
 `server-cert = /usr/local/etc/ocserv/server-cert.pem`
+
 `server-key = /usr/local/etc/ocserv/server-key.pem`
+
 证书路径  
 
 `#default-domain = example.com`  
