@@ -36,7 +36,7 @@ yum install -y openssl openssl-devel
 
 **2.编译nettle**
 
-**安装gmp**
+安装gmp
 
 ```html
 yum install -y gmp-devel gmp
@@ -61,7 +61,7 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 
 **2、编译unbound**
 
-**安装expat-devel**
+安装expat-devel
 
 ```html
 yum install -y expat-devel
@@ -91,7 +91,7 @@ mv -v /usr/sbin/unbound-host /usr/bin/
 
 **3、编译gnutls**
 
-**安装libgpg-error:**
+安装libgpg-error:
 
 ```html
 
@@ -111,7 +111,7 @@ make install
 
 ```
 
-**安装libgcrypt:**
+安装libgcrypt:
 
 ```html
 
@@ -133,7 +133,7 @@ install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
 
 ```
 
-**安装libtasn1**
+安装libtasn1
 
 ```html
 
@@ -153,7 +153,7 @@ make install
 
 ```
 
-**安装gnutls**
+安装gnutls
 
 ```html
 
@@ -177,18 +177,25 @@ make install
 
 **4、编译ocserv**
 
-`wget ftp://ftp.infradead.org/pub/ocserv/ocserv-0.10.5.tar.xz`
+```html
 
-`xz -c -d ocserv-0.10.5.tar.xz | tar x`
+wget ftp://ftp.infradead.org/pub/ocserv/ocserv-0.10.5.tar.xz
 
-`cd ocserv-0.10.5`
+xz -c -d ocserv-0.10.5.tar.xz | tar x
+
+cd ocserv-0.10.5
+
+```
 
 增大 route 数量限制  
-`vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h`  
-修改:  
-`#define MAX_CONFIG_ENTRIES 200`
 
-`./configure && make && make install`
+```html
+vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h
+```
+修改:  
+#define MAX_CONFIG_ENTRIES 200
+
+./configure && make && make install
 
 **5、配置ocserv**
 
