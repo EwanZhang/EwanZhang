@@ -20,7 +20,7 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 **1.安装编译环境及依赖，如部分软件不能安装请先安装epel源**
 
-`rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm1`
+`rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm`
 
 `rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
 
@@ -36,43 +36,114 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 `yum install gmp-devel gmp`
 
-`wget http://ftp.gnu.org/gnu/nettle/nettle-2.7.1.tar.gz`
+`wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz`
 
-`tar zxf nettle-2.7.1.tar.gz && cd nettle-2.7.1`
+`tar zxf nettle-3.1.tar.gz && cd nettle-3.1`
 
-`./configure --prefix=/usr && make`
+`./configure --prefix=/usr &&`
+
+`make`
 
 `make install &&`
-
-`chmod -v 755 /usr/lib/libhogweed.so.2.5 /usr/lib/libnettle.so.4.7 &&`
-
-`install -v -m755 -d /usr/share/doc/nettle-2.7.1 &&`
-
-`install -v -m644 nettle.html /usr/share/doc/nettle-2.7.1`
+`chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&`
+`install -v -m755 -d /usr/share/doc/nettle-3.1.1  &&`
+`install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1`
 
 **2、编译unbound**
+
+`cd`
 
 安装expat-devel
 
 `yum install expat-devel`
 
-`wget http://unbound.nlnetlabs.nl/downloads/unbound-1.4.22.tar.gz`
+`wget http://unbound.nlnetlabs.nl/downloads/unbound-1.5.4.tar.gz`
 
-`tar zxf unbound-1.4.22.tar.gz && cd unbound-1.4.22`
+`tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4`
 
-`./configure && make && make install`
+`groupadd -g 88 unbound &&`
+`useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \`
+`        -g unbound -s /bin/false unbound`
+`./configure --prefix=/usr     \`
+`            --sysconfdir=/etc \`
+`            --disable-static  \`
+`            --with-pidfile=/run/unbound.pid &&`
+`make`
 
-`mkdir -p /etc/unbound && unbound-anchor -a "/etc/unbound/root.key"`
+`make install &&`
+`mv -v /usr/sbin/unbound-host /usr/bin/`
 
 **3、编译gnutls**
 
-`wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/gnutls-3.2.12.1.tar.xz`
+安装libgpg-error:
+`cd`
 
-`xz -c -d gnutls-3.2.12.1.tar.xz | tar x`
+`wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz`
 
-`cd gnutls-3.2.12`
+`tar zxvf libgpg-error-1.11.tar.gz`
 
-`./configure --prefix=/usr && make && make install`
+`cd libgpg-error-1.11`
+
+`./configure`
+
+`make`
+
+`make install`
+
+安装libgcrypt:
+
+`cd`
+
+`wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2`
+
+`tar jxvf libgcrypt-1.6.3.tar.bz2`
+
+`cd libgcrypt-1.6.3`
+
+`./configure --prefix=/usr &&`
+
+`make`
+
+`make install &&`
+`install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&`
+`install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \`
+`                    /usr/share/doc/libgcrypt-1.6.3`
+
+
+安装libtasn1
+
+`cd`
+
+`wget http://mirror.hust.edu.cn/gnu/libtasn1/libtasn1-4.3.tar.gz`
+
+`tar zxvf libtasn1-4.3.tar.gz`
+
+`cd libtasn1-4.3`
+
+`./configure --prefix=/usr --disable-static &&`
+
+`make`
+
+`make install`
+
+
+安装gnutls
+
+`cd`
+
+`wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.4.1.tar.xz`
+
+`xz -d gnutls-3.4.4.1.tar.xz`
+
+`tar xf gnutls-3.4.4.1.tar`
+
+`cd gnutls-3.4.4.1`
+
+`./configure --prefix=/usr \`
+`            --without-p11-kit &&`
+`make`
+
+`make install`
 
 **4、编译ocserv**
 
@@ -147,8 +218,8 @@ ocserv还支持证书认证，可以通过Pluggable Authentication Modules (PAM)
 `max-same-clients = 10`  
 同一个用户最多同时登陆数  
 
-`server-cert = /usr/local/etc/ocserv/server-cert.pem`  
-`server-key = /usr/local/etc/ocserv/server-key.pem`  
+`server-cert = /usr/local/etc/ocserv/server-cert.pem`
+`server-key = /usr/local/etc/ocserv/server-key.pem`
 证书路径  
 
 `#default-domain = example.com`  
