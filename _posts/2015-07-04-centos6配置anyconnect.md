@@ -36,22 +36,26 @@ yum install -y openssl openssl-devel
 
 **2.编译nettle**
 
+```javascript
+
 安装gmp
 
-`yum install gmp-devel gmp`
+yum install -y gmp-devel gmp
 
-`wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz`
+wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz
 
-`tar zxf nettle-3.1.tar.gz && cd nettle-3.1`
+tar zxf nettle-3.1.tar.gz && cd nettle-3.1
 
-`./configure --prefix=/usr &&`
+./configure --prefix=/usr &&
 
-`make`
+make
 
-`make install &&`
-`chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&`  
-`install -v -m755 -d /usr/share/doc/nettle-3.1.1  &&`  
-`install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1`  
+make install &&
+chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&
+install -v -m755 -d /usr/share/doc/nettle-3.1.1  &&
+install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
+
+```
 
 **2、编译unbound**
 
