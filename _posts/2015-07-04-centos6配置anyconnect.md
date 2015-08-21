@@ -20,15 +20,19 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 **1.安装编译环境及依赖，如部分软件不能安装请先安装epel源**
 
-`rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm`
+~~~~{python}
 
-`rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
+rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
-`yum install pam-devel readline-devel http-parser-devel`
+rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-`yum install tar gzip xz wget gcc make autoconf `
+yum install -y pam-devel readline-devel http-parser-devel
 
-`yum install openssl openssl-devel`
+yum install -y tar gzip xz wget gcc make autoconf
+
+yum install -y openssl openssl-devel
+
+~~~~
 
 **2.编译nettle**
 
