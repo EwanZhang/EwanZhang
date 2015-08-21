@@ -22,8 +22,6 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 ```html	
 
-<span style="color:#337FE5;">
-
 rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
 rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
@@ -34,8 +32,6 @@ yum install -y tar gzip xz wget gcc make autoconf
 
 yum install -y openssl openssl-devel
 
-</span> 
-
 ```
 
 **2.编译nettle**
@@ -45,6 +41,10 @@ yum install -y openssl openssl-devel
 安装gmp
 
 yum install -y gmp-devel gmp
+
+```
+
+```html
 
 wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz
 
@@ -63,99 +63,94 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 
 **2、编译unbound**
 
-`cd`
+```html
 
 安装expat-devel
+yum install -y expat-devel
 
-`yum install expat-devel`
+```
 
-`wget http://unbound.nlnetlabs.nl/downloads/unbound-1.5.4.tar.gz`
+```html
 
-`tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4`
+cd
 
-`groupadd -g 88 unbound &&`  
-`useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \`  
-`        -g unbound -s /bin/false unbound`  
-`./configure --prefix=/usr     \`  
-`            --sysconfdir=/etc \`  
-`            --disable-static  \`  
-`            --with-pidfile=/run/unbound.pid &&`  
-`make`
+wget http://unbound.nlnetlabs.nl/downloads/unbound-1.5.4.tar.gz
 
-`make install &&`  
-`mv -v /usr/sbin/unbound-host /usr/bin/`
+tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
+
+groupadd -g 88 unbound &&
+useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \
+        -g unbound -s /bin/false unbound
+./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --disable-static  \
+            --with-pidfile=/run/unbound.pid &&
+make
+
+make install &&
+mv -v /usr/sbin/unbound-host /usr/bin/
+
+```
 
 **3、编译gnutls**
 
+```html
+
 安装libgpg-error:
-`cd`
+cd
+wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz
+tar zxvf libgpg-error-1.11.tar.gz
+cd libgpg-error-1.11
+./configure
+make
+make install
 
-`wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz`
+```
 
-`tar zxvf libgpg-error-1.11.tar.gz`
-
-`cd libgpg-error-1.11`
-
-`./configure`
-
-`make`
-
-`make install`
+```html
 
 安装libgcrypt:
+cd
+wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
+tar jxvf libgcrypt-1.6.3.tar.bz2
+cd libgcrypt-1.6.3
+./configure --prefix=/usr &&
+make
 
-`cd`
+make install &&
+install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&
+install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
+                    /usr/share/doc/libgcrypt-1.6.3
 
-`wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2`
+```
 
-`tar jxvf libgcrypt-1.6.3.tar.bz2`
-
-`cd libgcrypt-1.6.3`
-
-`./configure --prefix=/usr &&`
-
-`make`
-
-`make install &&`  
-`install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&`  
-`install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \`  
-`                    /usr/share/doc/libgcrypt-1.6.3`  
-
+```html
 
 安装libtasn1
+cd
+wget http://mirror.hust.edu.cn/gnu/libtasn1/libtasn1-4.3.tar.gz
+tar zxvf libtasn1-4.3.tar.gz
+cd libtasn1-4.3
+./configure --prefix=/usr --disable-static &&
+make
+make install
 
-`cd`
+```
 
-`wget http://mirror.hust.edu.cn/gnu/libtasn1/libtasn1-4.3.tar.gz`
-
-`tar zxvf libtasn1-4.3.tar.gz`
-
-`cd libtasn1-4.3`
-
-`./configure --prefix=/usr --disable-static &&`
-
-`make`
-
-`make install`
-
+```html
 
 安装gnutls
+cd
+wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.4.1.tar.xz
+xz -d gnutls-3.4.4.1.tar.xz
+tar xf gnutls-3.4.4.1.tar
+cd gnutls-3.4.4.1
+./configure --prefix=/usr \
+            --without-p11-kit &&
+make
+make install
 
-`cd`
-
-`wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.4.1.tar.xz`
-
-`xz -d gnutls-3.4.4.1.tar.xz`
-
-`tar xf gnutls-3.4.4.1.tar`
-
-`cd gnutls-3.4.4.1`
-
-`./configure --prefix=/usr \`  
-`            --without-p11-kit &&`  
-`make`
-
-`make install`
+```
 
 **4、编译ocserv**
 
