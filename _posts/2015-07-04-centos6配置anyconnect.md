@@ -20,22 +20,25 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 **1.安装编译环境及依赖，如部分软件不能安装请先安装epel源**
 
-> rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+```html
 
-> rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
-> yum install -y pam-devel readline-devel http-parser-devel
+rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-> yum install -y tar gzip xz wget gcc make autoconf
+yum install -y pam-devel readline-devel http-parser-devel
 
-> yum install -y openssl openssl-devel
+yum install -y tar gzip xz wget gcc make autoconf
 
+yum install -y openssl openssl-devel
+
+```
 
 **2.编译nettle**
 
-```html
-
 **安装gmp**
+
+```html
 
 yum install -y gmp-devel gmp
 
@@ -60,9 +63,9 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 
 **2、编译unbound**
 
-```html
+**安装expat-devel**
 
-安装expat-devel
+```html
 
 yum install -y expat-devel
 
@@ -92,9 +95,9 @@ mv -v /usr/sbin/unbound-host /usr/bin/
 
 **3、编译gnutls**
 
-```html
+**安装libgpg-error:**
 
-安装libgpg-error:
+```html
 
 cd
 
@@ -112,9 +115,9 @@ make install
 
 ```
 
-```html
+**安装libgcrypt:**
 
-安装libgcrypt:
+```html
 
 cd
 
@@ -134,9 +137,9 @@ install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
 
 ```
 
-```html
+**安装libtasn1**
 
-安装libtasn1
+```html
 
 cd
 
@@ -154,9 +157,9 @@ make install
 
 ```
 
-```html
+**安装gnutls**
 
-安装gnutls
+```html
 
 cd
 
