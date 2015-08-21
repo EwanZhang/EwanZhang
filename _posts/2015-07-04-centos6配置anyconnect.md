@@ -37,6 +37,7 @@ yum install -y openssl openssl-devel
 **2.编译nettle**
 
 安装gmp  
+
 ```html
 yum install -y gmp-devel gmp
 ```
@@ -61,6 +62,7 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 **2、编译unbound**
 
 安装expat-devel  
+
 ```html
 yum install -y expat-devel
 ```
@@ -92,7 +94,6 @@ mv -v /usr/sbin/unbound-host /usr/bin/
 安装libgpg-error:
 
 ```html
-
 cd
 
 wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz
@@ -106,12 +107,11 @@ cd libgpg-error-1.11
 make
 
 make install
-
 ```
 
 安装libgcrypt:  
-```html
 
+```html
 cd
 
 wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
@@ -127,12 +127,11 @@ make install &&
 install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&
 install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
                     /usr/share/doc/libgcrypt-1.6.3
-
 ```
 
 安装libtasn1  
-```html
 
+```html
 cd
 
 wget http://mirror.hust.edu.cn/gnu/libtasn1/libtasn1-4.3.tar.gz
@@ -146,12 +145,11 @@ cd libtasn1-4.3
 make
 
 make install
-
 ```
 
 安装gnutls  
-```html
 
+```html
 cd
 
 wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.4.1.tar.xz
@@ -167,26 +165,26 @@ cd gnutls-3.4.4.1
 make
 
 make install
-
 ```
 
 **4、编译ocserv**
 
 ```html
-
 wget ftp://ftp.infradead.org/pub/ocserv/ocserv-0.10.5.tar.xz
 
 xz -c -d ocserv-0.10.5.tar.xz | tar x
 
 cd ocserv-0.10.5
-
 ```
 
 增大 route 数量限制  
+
 ```html
 vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h
 ```  
+
 修改:  
+
 ```html
 #define MAX_CONFIG_ENTRIES 200
 ```
