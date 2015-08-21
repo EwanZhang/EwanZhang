@@ -20,7 +20,7 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 **1.安装编译环境及依赖，如部分软件不能安装请先安装epel源**
 
-```javascript
+```html
 
 rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
@@ -36,7 +36,7 @@ yum install -y openssl openssl-devel
 
 **2.编译nettle**
 
-```javascript
+```html
 
 安装gmp
 
