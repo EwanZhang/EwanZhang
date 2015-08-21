@@ -97,12 +97,19 @@ mv -v /usr/sbin/unbound-host /usr/bin/
 ```html
 
 安装libgpg-error:
+
 cd
+
 wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz
+
 tar zxvf libgpg-error-1.11.tar.gz
+
 cd libgpg-error-1.11
+
 ./configure
+
 make
+
 make install
 
 ```
@@ -110,10 +117,15 @@ make install
 ```html
 
 安装libgcrypt:
+
 cd
+
 wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
+
 tar jxvf libgcrypt-1.6.3.tar.bz2
+
 cd libgcrypt-1.6.3
+
 ./configure --prefix=/usr &&
 make
 
@@ -127,12 +139,19 @@ install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
 ```html
 
 安装libtasn1
+
 cd
+
 wget http://mirror.hust.edu.cn/gnu/libtasn1/libtasn1-4.3.tar.gz
+
 tar zxvf libtasn1-4.3.tar.gz
+
 cd libtasn1-4.3
+
 ./configure --prefix=/usr --disable-static &&
+
 make
+
 make install
 
 ```
@@ -140,14 +159,21 @@ make install
 ```html
 
 安装gnutls
+
 cd
+
 wget ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/gnutls-3.4.4.1.tar.xz
+
 xz -d gnutls-3.4.4.1.tar.xz
+
 tar xf gnutls-3.4.4.1.tar
+
 cd gnutls-3.4.4.1
+
 ./configure --prefix=/usr \
             --without-p11-kit &&
 make
+
 make install
 
 ```
