@@ -32,15 +32,15 @@ yum install -y tar gzip xz wget gcc make autoconf
 
 yum install -y openssl openssl-devel
 
+yum install -y gmp-devel gmp
+
+yum install -y expat-devel
+
+yum install bind-utils
+
 ```
 
 **2.编译nettle**
-
-安装gmp  
-
-```html
-yum install -y gmp-devel gmp
-```
 
 ```html
 
@@ -48,9 +48,7 @@ wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz
 
 tar zxf nettle-3.1.tar.gz && cd nettle-3.1
 
-./configure --prefix=/usr &&
-
-make
+./configure --prefix=/usr && make
 
 make install &&
 chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&
@@ -61,12 +59,6 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1.1
 
 **2、编译unbound**
 
-安装expat-devel  
-
-```html
-yum install -y expat-devel
-```
-
 ```html
 
 cd
@@ -75,17 +67,47 @@ wget http://unbound.nlnetlabs.nl/downloads/unbound-1.5.4.tar.gz
 
 tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
 
-groupadd -g 88 unbound &&
-useradd -c "Unbound DNS resolver" -d /var/lib/unbound -u 88 \
-        -g unbound -s /bin/false unbound
-./configure --prefix=/usr     \
-            --sysconfdir=/etc \
-            --disable-static  \
-            --with-pidfile=/run/unbound.pid &&
-make
+./configure && make && make install
 
-make install &&
-mv -v /usr/sbin/unbound-host /usr/bin/
+
+groupadd unbound
+useradd -d /var/unbound -m -g unbound -s /bin/false unbound
+mkdir -p /var/unbound/var/run
+chown -R unbound:unbound /var/unbound
+ln -s /var/unbound/var/run/unbound.pid /var/run/unbound.pid
+
+
+cd /var/unbound
+wget ftp://ftp.internic.net/domain/named.cache
+
+
+vi /var/unbound/unbound.conf 
+server:
+        verbosity: 1
+        interface: 0.0.0.0
+        port: 53
+        do-ip4: yes
+        do-ip6: no
+        do-udp: yes
+        do-tcp: yes
+        do-daemonize: yes
+        access-control: 0.0.0.0/0 allow_snoop
+        chroot: "/var/unbound"
+        username: "unbound"
+        directory: "/var/unbound"
+        use-syslog: no
+        pidfile: "/var/run/unbound.pid"
+        root-hints: "/var/unbound/named.cache"
+forward-zone:
+        name: "."
+        forward-addr: 202.96.209.133
+
+
+vi /etc/sysconfig/network-scripts/venet0:1
+DEVICE=venet0:1
+ONBOOT=yes
+IPADDR=192.168.10.1
+NETMASK=255.255.255.0
 
 ```
 
@@ -103,11 +125,7 @@ tar zxvf libgpg-error-1.11.tar.gz
 
 cd libgpg-error-1.11
 
-./configure
-
-make
-
-make install
+./configure && make && make install
 
 ```
 
@@ -123,8 +141,7 @@ tar jxvf libgcrypt-1.6.3.tar.bz2
 
 cd libgcrypt-1.6.3
 
-./configure --prefix=/usr &&
-make
+./configure --prefix=/usr && make
 
 make install &&
 install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&
@@ -145,9 +162,7 @@ tar zxvf libtasn1-4.3.tar.gz
 
 cd libtasn1-4.3
 
-./configure --prefix=/usr --disable-static &&
-
-make
+./configure --prefix=/usr --disable-static && make
 
 make install
 
@@ -275,8 +290,8 @@ server-key = /usr/local/etc/ocserv/server-key.pem
 ipv4-network = 192.168.10.0
 分配给VPN客户端的IP段  
 
-dns = 8.8.8.8
-dns = 8.8.4.4
+dns = 192.168.10.1
+
 
 #route = 192.168.1.0/255.255.255.0
 #route = 192.168.5.0/255.255.255.0
