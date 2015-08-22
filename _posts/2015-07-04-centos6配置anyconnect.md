@@ -390,4 +390,6 @@ Android上也有Cisco AnyConnect（需要root），不过Android可选择的太�
 
 Windows、MAC OS也有Cisco的官方客户端
 
+http://bgp.he.net/ AS查询
+
 ---  
