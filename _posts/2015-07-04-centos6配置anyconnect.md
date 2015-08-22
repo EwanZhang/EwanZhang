@@ -86,6 +86,7 @@ server:
         verbosity: 1
         interface: 0.0.0.0
         port: 53
+        prefetch: yes
         do-ip4: yes
         do-ip6: no
         do-udp: yes
