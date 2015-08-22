@@ -224,7 +224,7 @@ cat << _EOF_ >ca.tmpl
 cn = "stunnel.info VPN"
 organization = "stunnel.info"
 serial = 1
-expiration_days = 365
+expiration_days = 3650
 ca
 signing_key
 cert_signing_key
@@ -239,7 +239,7 @@ cat << _EOF_ >server.tmpl
 cn = "stunnel.info VPN"
 o = "stunnel"
 serial = 2
-expiration_days = 365
+expiration_days = 3650
 signing_key
 encryption_key #only if the generated key is an RSA one
 tls_www_server
@@ -252,7 +252,11 @@ certtool --generate-certificate --load-privkey server-key.pem --load-ca-certific
 把证书复制到ocserv的配置目录
 
 ```html
+
 mkdir -p /usr/local/etc/ocserv/ ; cp server-cert.pem /usr/local/etc/ocserv/ && cp server-key.pem /usr/local/etc/ocserv/
+
+cp ca-cert.pem /usr/local/etc/ocserv/
+
 ```
 
 复制配置文件样本
@@ -284,6 +288,8 @@ max-same-clients = 10
 
 server-cert = /usr/local/etc/ocserv/server-cert.pem
 server-key = /usr/local/etc/ocserv/server-key.pem
+
+ca-cert = /usr/local/etc/ocserv/ca-cert.pem
 
 证书路径  
 
@@ -348,6 +354,33 @@ vi /etc/rc.d/rc.local
 
 添加:
 /usr/local/sbin/ocserv -c /usr/local/etc/ocserv/ocserv.conf
+
+```
+
+```html
+
+制作客户端证书
+cd   #回到当前用户的目录
+certtool --generate-privkey --outfile user-key.pem
+cat << _EOF_ >user.tmpl
+	cn = "user"
+	unit = "admins"
+	uid = "anything you want"
+	expiration_days = 3650
+	signing_key
+	tls_www_client
+	_EOF_
+ 
+certtool --generate-certificate --load-privkey user-key.pem --load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem --template user.tmpl --outfile user-cert.pem
+
+客户端证书 user-cert.pem 还不能直接使用，需通过 OpenSSL转换成 .p12格式
+openssl pkcs12 -export -inkey user-key.pem -in user-cert.pem -name "client" -certfile ca-cert.pem -caname "VPN CA" -out user-cert.p12
+
+#按提示设置证书使用密码，或直接回车不设密码
+ 
+
+
+
 
 ```
 
