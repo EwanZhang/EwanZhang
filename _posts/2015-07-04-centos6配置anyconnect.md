@@ -36,7 +36,7 @@ yum install -y gmp-devel gmp
 
 yum install -y expat-devel
 
-yum install bind-utils
+yum install -y bind-utils
 
 ```
 
@@ -102,6 +102,8 @@ forward-zone:
         name: "."
         forward-addr: 202.96.209.133
 
+
+/usr/local/sbin/unbound -c /var/unbound/unbound.conf 
 
 vi /etc/sysconfig/network-scripts/venet0:1
 DEVICE=venet0:1
