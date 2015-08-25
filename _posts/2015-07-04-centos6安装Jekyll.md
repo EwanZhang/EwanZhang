@@ -32,6 +32,8 @@ Jekyll是基于Ruby开发的，用到了Ruby的execjs方法来执行JavaScript�
 **安装Ruby，使用rvm管理Ruby版本**  
 `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`  
 `\curl -sSL https://get.rvm.io | bash -s stable`  
+
+`/etc/profile.d/rvm.sh`(可能需要重新打开shell 窗口)  
 `rvm install 1.9.3`  
 
 **安装额外的Ruby包和文档:**  
