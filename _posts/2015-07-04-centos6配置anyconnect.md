@@ -42,7 +42,7 @@ yum install -y bind-utils
 
 **2.编译nettle**
 
-```html
+```
 
 wget http://ftp.gnu.org/gnu/nettle/nettle-3.1.tar.gz
 
@@ -71,7 +71,13 @@ tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
 
 ```
 
-[[alert]]:
+
+#下面这一段请忽略 ↓↓↓↓↓↓↓↓↓↓
+
+#原本打算使用unbound强制TCP查询DNS，但是国内DNS服务器解析被墙域名的时候，直接返回的就是错误IP，所以放弃这个方式，改用DNSmasq。
+
+```
+
 groupadd unbound
 useradd -d /var/unbound -m -g unbound -s /bin/false unbound
 mkdir -p /var/unbound/var/run
@@ -113,6 +119,10 @@ DEVICE=venet0:1
 ONBOOT=yes
 IPADDR=192.168.10.1
 NETMASK=255.255.255.0
+
+```
+
+#↑↑↑↑↑↑↑↑↑↑
 
 **3、编译gnutls**
 
