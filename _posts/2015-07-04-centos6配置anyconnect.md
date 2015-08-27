@@ -40,7 +40,7 @@ yum install -y bind-utils
 
 ```
 
-**2.编译nettle**
+**2.安装nettle**
 
 ```
 
@@ -57,7 +57,7 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1
 
 ```
 
-**2、编译unbound**
+**2、安装unbound**
 
 ```
 
@@ -72,7 +72,7 @@ tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
 ```
 
 
-**下面这一段请忽略，原本打算使用unbound强制TCP查询DNS，但是国内DNS服务器解析被墙域名的时候，直接返回的就是错误IP，所以放弃这个方式，改用DNSmasq。**  
+**下面这一段请忽略，原本打算使用unbound强制TCP查询DNS，但是国内DNS服务器解析被墙域名的时候，直接返回的就是错误IP，所以放弃这个方式，改用DNSmasq。但是unbound还是要安装**  
 
 ```
 
@@ -120,7 +120,11 @@ NETMASK=255.255.255.0
 
 ```  
 
-**3、编译gnutls**
+**3、安装gnutls**
+
+先确认系统是否安装libgpg-error、libgcrypt、libtasn1等库，如果没有先安装。
+
+安装gnutls时如果提示缺少xx库支持，先安装xx库，再重新安装gnutls。
 
 安装libgpg-error:
 
@@ -199,7 +203,7 @@ make install
 
 ```
 
-**4、编译ocserv**
+**4、安装ocserv**
 
 ```html
 
