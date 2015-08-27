@@ -112,8 +112,8 @@ forward-zone:
 
 /usr/local/sbin/unbound -c /var/unbound/unbound.conf 
 
-vi /etc/sysconfig/network-scripts/venet0:1
-DEVICE=venet0:1
+vi /etc/sysconfig/network-scripts/eth0:0
+DEVICE=eth0:0
 ONBOOT=yes
 IPADDR=192.168.10.1
 NETMASK=255.255.255.0
