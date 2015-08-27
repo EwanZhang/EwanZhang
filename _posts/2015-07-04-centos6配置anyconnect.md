@@ -59,7 +59,7 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1
 
 **2、编译unbound**
 
-```html
+```
 
 cd
 
@@ -69,7 +69,9 @@ tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
 
 ./configure && make && make install
 
+```
 
+[[alert]]:
 groupadd unbound
 useradd -d /var/unbound -m -g unbound -s /bin/false unbound
 mkdir -p /var/unbound/var/run
@@ -111,8 +113,6 @@ DEVICE=venet0:1
 ONBOOT=yes
 IPADDR=192.168.10.1
 NETMASK=255.255.255.0
-
-```
 
 **3、编译gnutls**
 
