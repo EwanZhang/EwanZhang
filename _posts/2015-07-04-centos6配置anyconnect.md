@@ -16,27 +16,13 @@ ocserv需要3.1版以上的gnutls，gnutls需要2.7版以上的nettle
 
 这两个在repo仓库里均没有，所以我们自己编译
 
-首先保证系统里已安装openssl、gcc、make等常用软件
+首先保证系统里已安装openssl、gcc等常用软件
 
-**1.安装编译环境及依赖，如部分软件不能安装请先安装epel源**
+**1.安装编译环境及依赖**
 
 ```
 
-rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-
-rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-
-yum install -y pam-devel readline-devel http-parser-devel
-
-yum install -y tar gzip xz wget gcc make autoconf
-
-yum install -y openssl openssl-devel
-
-yum install -y gmp-devel gmp
-
-yum install -y expat-devel
-
-yum install -y bind-utils
+yum install -y gcc openssl openssl-devel gmp-devel gmp  readline-devel
 
 ```
 
@@ -57,115 +43,11 @@ install -v -m644 nettle.html /usr/share/doc/nettle-3.1
 
 ```
 
-**2、安装unbound**
-
-```
-
-cd
-
-wget http://unbound.nlnetlabs.nl/downloads/unbound-1.5.4.tar.gz
-
-tar zxf unbound-1.5.4.tar.gz && cd unbound-1.5.4
-
-./configure && make && make install
-
-```
-
-
-**下面这一段请忽略，原本打算使用unbound强制TCP查询DNS，但是国内DNS服务器解析被墙域名的时候，直接返回的就是错误IP，所以放弃这个方式，改用DNSmasq。但是unbound还是要安装**  
-
-```
-
-groupadd unbound
-useradd -d /var/unbound -m -g unbound -s /bin/false unbound
-mkdir -p /var/unbound/var/run
-chown -R unbound:unbound /var/unbound
-ln -s /var/unbound/var/run/unbound.pid /var/run/unbound.pid
-
-
-cd /var/unbound
-wget ftp://ftp.internic.net/domain/named.cache
-
-
-vi /var/unbound/unbound.conf 
-server:
-        verbosity: 1
-        interface: 0.0.0.0
-        port: 53
-        prefetch: yes
-        do-ip4: yes
-        do-ip6: no
-        do-udp: yes
-        do-tcp: yes
-        do-daemonize: yes
-        access-control: 0.0.0.0/0 allow_snoop
-        chroot: "/var/unbound"
-        username: "unbound"
-        directory: "/var/unbound"
-        use-syslog: no
-        pidfile: "/var/run/unbound.pid"
-        root-hints: "/var/unbound/named.cache"
-forward-zone:
-        name: "."
-        forward-addr: 202.96.209.133
-
-
-/usr/local/sbin/unbound -c /var/unbound/unbound.conf 
-
-vi /etc/sysconfig/network-scripts/eth0:0
-DEVICE=eth0:0
-ONBOOT=yes
-IPADDR=192.168.10.1
-NETMASK=255.255.255.0
-
-```  
-
 **3、安装gnutls**
-
-先确认系统是否安装libgpg-error、libgcrypt、libtasn1等库，如果没有先安装。
-
-安装gnutls时如果提示缺少xx库支持，先安装xx库，再重新安装gnutls。
-
-安装libgpg-error:
-
-```html
-
-cd
-
-wget ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-1.11.tar.gz
-
-tar zxvf libgpg-error-1.11.tar.gz
-
-cd libgpg-error-1.11
-
-./configure && make && make install
-
-```
-
-安装libgcrypt:  
-
-```html
-
-cd
-
-wget ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.6.3.tar.bz2
-
-tar jxvf libgcrypt-1.6.3.tar.bz2
-
-cd libgcrypt-1.6.3
-
-./configure --prefix=/usr && make
-
-make install &&
-install -v -dm755   /usr/share/doc/libgcrypt-1.6.3 &&
-install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*} \
-                    /usr/share/doc/libgcrypt-1.6.3
-
-```
 
 安装libtasn1  
 
-```html
+```
 
 cd
 
@@ -183,7 +65,7 @@ make install
 
 安装gnutls  
 
-```html
+```
 
 cd
 
