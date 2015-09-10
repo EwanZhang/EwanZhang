@@ -57,7 +57,9 @@ tar zxvf libtasn1-4.3.tar.gz
 
 cd libtasn1-4.3
 
-./configure --prefix=/usr --disable-static && make
+./configure --prefix=/usr --disable-static &&
+
+make
 
 make install
 
