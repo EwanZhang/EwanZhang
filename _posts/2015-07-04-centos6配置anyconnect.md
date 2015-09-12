@@ -98,7 +98,7 @@ xz -c -d ocserv-0.10.5.tar.xz | tar x
 cd ocserv-0.10.5
 
 增大 route 数量限制  
-vi /root/nettle-2.7.1/unbound-1.4.22/gnutls-3.2.12/ocserv-0.10.5/src/vpn.h
+vi /root/ocserv-0.10.5/src/vpn.h
 修改:  
 #define MAX_CONFIG_ENTRIES 200
 
