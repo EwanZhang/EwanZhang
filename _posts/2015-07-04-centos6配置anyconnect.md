@@ -80,7 +80,7 @@ tar xf gnutls-3.4.4.1.tar
 cd gnutls-3.4.4.1
 
 ./configure --prefix=/usr \
-            --without-p11-kit &&
+            --with-included-libtasn1 &&
 make
 
 make install
